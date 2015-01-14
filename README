@@ -12,3 +12,8 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+This program can be used as a benchmarking framework for your kernels.
+You can make use of tools like IACA and Likwid quickly. Please start
+by looking to the Makefile to set your enviroment. You cann add more
+kernels to the kernels.h and the kernel.c files.
