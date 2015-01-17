@@ -14,6 +14,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 This program can be used as a benchmarking framework for your kernels.
-You can make use of tools like IACA and Likwid quickly. Please start
-by looking to the Makefile to set your enviroment. You cann add more
-kernels to the kernels.h and the kernel.c files.
+You can make use of tools like IACA and Likwid quickly.
+
+To add - or modify - a kernel you should: 
+(1) In kernels.h:
+	(a) you should add a name for your kernel under "modification point 1". 
+	This will be used later for switching between all the kernels you want 
+	to benchmark.
+	(b) Define your kernel at "modification point 2".
+(2) duplicate one of the <kernel.c> files - e.g striad.c or vtriad.c - and 
+modify the modification points 1 and 2 to meet your needs.
+(3) In main.c:
+	(a) "modification point 1": to set the number of arrays in your kernel
+	so you don't have to worry about it again.
+	(b) "modification point 2": to add an entry point for your kernel and set
+	its arguments.
+(4) Visit the Makefile to set your enviroment. 

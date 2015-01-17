@@ -38,12 +38,15 @@
 #endif
 
 // Registering a new kernel
+/* Modification point (1) */
 enum KER {  
 	KER_VTRIAD         = 1,
-	KER_ 	   		   = 11
+	KER_STREAD    	   = 2,
 };
 
-// Registering memory size (used in deciding repeatation - optional)
+// Registering repeatation times for the kernels based on maximum number of
+// elements fit to L1, L2 or L3
+/* Modification point (3) - optional */
 enum MemLim {  
 	L1		= 10000,
 	L23		= 1000000
@@ -60,7 +63,7 @@ enum MemLim {
 
 	// Set repeat the experiment
 	#ifndef NITER
-	#error Repeat Number Required (set NITR) - type '0' for default
+		#error Repeat Number Required (set NITR) - type '0' for default
 	#endif
 
 	// If you have many kernels in your application, you can choose 
@@ -71,8 +74,9 @@ enum MemLim {
 #endif
 
 
-// List of kernels
-
+// List of kernels. You can add more definitions here.
+/* Modification point (2) */
 void vTriad(double * restrict a, double * restrict b, double * restrict c, double * restrict d, int n);
+void sTriad(double * restrict a, double * restrict b, double * restrict c, int n);
 
 #endif

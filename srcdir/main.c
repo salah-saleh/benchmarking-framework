@@ -70,12 +70,20 @@ int main (int argc, char** argv){
     }
 
     // Print info about the kernel in benchmark
+    /* Modification point (1): Add another 'case' for your krenel
+                        set the number of arrays inside your kernel */
     switch (eKernel) 
     {
         case KER_VTRIAD:
             printf("Kernel:                 vTriad\n");
             printf("# arrays alloc:         4\n");
-            eNarr = 11;
+            eNarr = 4;
+        break;
+
+        case KER_STRIAD:
+            printf("Kernel:                 sTriad\n");
+            printf("# arrays alloc:         3\n");
+            eNarr = 3;
         break;
     }
 
@@ -157,15 +165,38 @@ int main (int argc, char** argv){
         case KER_VTRIAD:
             #if LIKWID
             #if LIKEXT
+            /* Modification the name to your kernel name */
             likwid_markerStartRegion("vTriad_OUT");
             #endif
             #endif
             // Repeat the execution of kernel
             for(j=0; j<eIter; ++j){
+                /* Modification the arguments to your kernel */
                 vTriad(arrOfArrs[0], arrOfArrs[1], arrOfArrs[2], arrOfArrs[3], eSize);
             }
             #if LIKWID
             #if LIKEXT
+            /* Modification the name to your kernel name */
+            likwid_markerStopRegion("vTriad_OUT"); 
+            #endif
+            #endif   
+        break;
+
+        case KER_STRIAD:
+            #if LIKWID
+            #if LIKEXT
+            /* Modification the name to your kernel name */
+            likwid_markerStartRegion("sTriad_OUT");
+            #endif
+            #endif
+            // Repeat the execution of kernel
+            for(j=0; j<eIter; ++j){
+                /* Modification the arguments to your kernel */
+                sTriad(arrOfArrs[0], arrOfArrs[1], arrOfArrs[2], eSize);
+            }
+            #if LIKWID
+            #if LIKEXT
+            /* Modification the name to your kernel name */
             likwid_markerStopRegion("vTriad_OUT"); 
             #endif
             #endif   

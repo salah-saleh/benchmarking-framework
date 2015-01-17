@@ -16,7 +16,8 @@
 #include "kernels.h"
 #include "util.h"
 
-void vTriad(double * restrict a, double * restrict b, double * restrict c, double * restrict d, int n){
+/* Modification point (1): change the parameters if needed*/
+void sTriad(double * restrict a, double * restrict b, double * restrict c, int n){
     
     int i;
 
@@ -26,7 +27,8 @@ void vTriad(double * restrict a, double * restrict b, double * restrict c, doubl
     #endif
 
     #if LIKWID
-    likwid_markerStartRegion("vTriad_IN");
+    /* Modification the name to your kernel name */
+    likwid_markerStartRegion("sTriad_IN");
     #endif
 
     #if IACA 
@@ -42,7 +44,8 @@ void vTriad(double * restrict a, double * restrict b, double * restrict c, doubl
     //#pragma unroll(8)
     for (i=0; i<n;++i){
 
-        a[i] = b[i] + c[i] * d[i];
+        /* Modification point (2): change the kernel if needed*/
+        a[i] = b[i] + c[i] * 0.1;
 
     }
     #if IACA 
@@ -50,7 +53,8 @@ void vTriad(double * restrict a, double * restrict b, double * restrict c, doubl
     #endif
 
     #if LIKWID
-    likwid_markerStopRegion("vTriad_IN"); 
+    /* Modification the name to your kernel name */
+    likwid_markerStopRegion("sTriad_IN"); 
     #endif
 
     #if OMP
